@@ -1,4 +1,20 @@
- /**
+/**
+ * 脚手架vue-cli:                 
+ *    安装:npm install -g vue-cli
+ *        vue init webpack my-project (Set up unit tests ：No，Setup e2e tests with Nightwatch?No)
+ * 
+ *        npm start 运行
+ *        npm run build 打包 
+ *        serve -s dist 运行(打包后)
+ * 
+ *    注意:
+ *        检测组件:加<h2>xxx</h2>，脱离子组件，运行看有没h2的内容
+ *        data写法: data () { return xx}
+ *        组件中的scope: 作用域，如果父子组件都没scope，父组件会用子组件的样式
+ * 
+ */
+
+/**
   * Vue成神之路:
   * <style type="text/css">
   * 
@@ -93,6 +109,7 @@
  * 修改配置:
  *      文件路径显示绝对路径
  *      设置中Mouse Wheel Zoom设置放大缩小
+ *      自动保存
  * 
  * 修改了快捷键:
  *      整理代码: Ctrl + shift + l
@@ -107,6 +124,7 @@
  *      右键启动:      View in Browser
  *                    debugger from chrome
  *      文件夹图标:    VScode icons(文件-首选项-文件图标)
+ *      Vue提示
  * 
  * 浏览器插件:
  *      Vue Devtools
