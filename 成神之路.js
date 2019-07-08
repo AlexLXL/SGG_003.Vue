@@ -12,6 +12,40 @@
  *        data写法: data () { return xx}
  *        组件中的scope: 作用域，如果父子组件都没scope，父组件会用子组件的样式
  * 
+ *    组件通信:
+ *        | props  ▁▁▁▁  父子之间▁
+ *        | 自定义事件  ▁▁▁▁  子 --> 父
+ *              | 在父组件: @addTodo="addTodo"
+ *              | 在子组件：this.$emit("addTodo", data);
+ * 
+ *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")
+ * 
+ *              | 父组件:
+ *                    | <Child>
+ *                    |     <div slot="xxx"> 对应的标签结构</div>
+ *                    |     <div slot="yyy"> 对应的标签结构</div>
+ *                    | </Child>
+ * 
+ *              | 子组件:
+ *                    | <template>
+ *                    |     <slot name="xxx" />
+ *                    |     <slot name="yyy" />
+ *                    | </template>
+ * 
+ *        | PubSub消息发布/订阅  ▁▁▁▁  任意组件间
+ *              | 父组件:
+ *                    | mounted: { PubSub.subscribe("eventName",回调函数) 订阅
+ *                    | beforeDestroy() { PubSub.unsubscribe(token) }     取消订阅(在实例对象销毁之前)
+ * 
+ *              | 子组件:
+ *                    | methods: { PubSub.publish("eventName", data); } 发布
+ * 
+ *        | 事件总线$bus  ▁▁▁▁  任意组件间
+ *              | main文件实例化前,  Vue.prototype.$bus = new Vue()
+ *              | 绑定事件: this.$bus.$on('eventName'，(data)=>{})
+ *                触发事件: this.$bus.$emit('eventName'，data)
+ *                移除事件: this.$off('eventName')
+ * 
  */
 
 /**
@@ -77,6 +111,7 @@
   *             fullName: {
   *               get(){};
   *               set(val){}
+  *                 | val --- 表单的value 
   *             } 
   *         }
   * 
@@ -86,13 +121,15 @@
   *         beforeDestroy(){}   destroyed(){}
   * 
   *         directives: {                     // 内部的自定义指令(只能用自己的data)(当前vm)(注意下面的写法 '')
-                'lower-text'(el, binding){ 
-                    el.innerText = binding.value.toLowerCase();
-                }
-            } 
+  *              'lower-text'(el, binding){ 
+  *                  el.innerText = binding.value.toLowerCase();
+  *              }
+  *          } 
   *           
   * 
-  *         watch: { name(val){} }            // 局部监视
+  *         watch: { name(val){} }            // 局部监视(监视xx改变就做一些操作)
+  *           | val就是最新的name                     | 另外一种写法:todos:{ deep: true,handler: function(val) {} }
+  * 
   *     })
   *     
   *     vm.$watch( 'name', fn )               // 全局监视,监听属性name变化,val:实时name
@@ -124,7 +161,7 @@
  *      右键启动:      View in Browser
  *                    debugger from chrome
  *      文件夹图标:    VScode icons(文件-首选项-文件图标)
- *      Vue提示
+ *      Vue提示、ES6提示
  * 
  * 浏览器插件:
  *      Vue Devtools
