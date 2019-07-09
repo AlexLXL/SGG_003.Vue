@@ -15,7 +15,7 @@
         myPubSub.subscribe('add',function(data){
             console.log('add1111:' + data);
         })
-        myPubSub.subscribe('add',function(data){
+        const token = myPubSub.subscribe('add',function(data){
             console.log('add2222:' + data);
         })
         myPubSub.subscribe('del',function(data){
@@ -23,7 +23,7 @@
         })
 
         // myPubSub.unsubscribe()
-        myPubSub.unsubscribe('id-1')
+        myPubSub.unsubscribe(token)
 
         myPubSub.publish('add', '我知道了傻逼')
         myPubSub.publish('del', '我知道了傻逼')

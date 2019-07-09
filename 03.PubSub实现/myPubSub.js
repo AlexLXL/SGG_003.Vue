@@ -27,6 +27,7 @@
         }
         const token = 'id-' + ++id
         myPubSubContainer[msg][token] = subscriber
+        return token
     }
 
     // 定义异步publish方法
