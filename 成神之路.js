@@ -69,8 +69,8 @@
   *         <p v-show="isOk" ref="flag"  v-upper-text="msg">这是P</p>
   *     <transition>
   * 
-  *      // 指令: 
-  *         v-model    ---   表单     --- 获取表单值(实时)  ---  <input type="text" v-model="msg"> / <input type="checkbox" value="eat" v-model="person.hobbies">value和v-model相同时默认选中 / 下拉框的默认选择V-model在select标签，而不是option
+  *      // 指令:                                                 | checkbox多选中,v-model为true就是选中,也可为['xx','yy']选中xx和yy
+  *         v-model    ---   表单     --- 获取表单值(实时)  ---  <input type="text" v-model="msg"> v-model是输入框的值 / 下拉框选中, V-model在select标签，而不是option
   *         v-bind     ---   url、key --- 在标签属性加      ---  简写: :href :key :class :style :value(下拉框的值用id)
   *         v-on       ---   事件     --- 加事件            ---  简写: @click="show" ( 在methods定义show ) | 可传参:@click="show1($event, 'xxx')"   
   *         v-if       ---   去掉DOM  --- 控制显示内容                                                      装饰符:@click.prevent="xxx"  禁默认行为
