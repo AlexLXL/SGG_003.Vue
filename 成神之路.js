@@ -3,7 +3,7 @@
  *    安装:npm install -g vue-cli
  *        vue init webpack my-project (Set up unit tests ：No，Setup e2e tests with Nightwatch?No)
  * 
- *        npm start 运行
+ *        npm start 运行 ( 配置自动打开页面-config/index.js 、配置忽略enlint语法检测-eslintrc.js )
  *        npm run build 打包 
  *        serve -s dist 运行(打包后)
  * 
@@ -11,6 +11,8 @@
  *        检测组件:加<h2>xxx</h2>，脱离子组件，运行看有没h2的内容
  *        data写法: data () { return xx}
  *        组件中的scope: 作用域，如果父子组件都没scope，父组件会用子组件的样式
+ * 
+ *    脚手架的基本配置:
  * 
  *    组件通信:
  *        | props  ▁▁▁▁  父子之间   props:['xx','yy']、props:{ xx:Object}、props:{xx:{type:Object,required:true}}
@@ -32,7 +34,7 @@
  *                    |     <slot name="yyy" />
  *                    | </template>
  * 
- *        | PubSub消息发布/订阅  ▁▁▁▁  任意组件间
+ *        | PubSub消息发布/订阅  ▁▁▁▁  任意组件间 (传递数据,调用回调函数、可以发送请求)
  *              | 父组件:
  *                    | mounted: { PubSub.subscribe("eventName",回调函数) 订阅
  *                    | beforeDestroy() { PubSub.unsubscribe(token) }     取消订阅(在实例对象销毁之前)
@@ -40,14 +42,76 @@
  *              | 子组件:
  *                    | methods: { PubSub.publish("eventName", data); } 发布
  * 
- *        | 事件总线$bus  ▁▁▁▁  任意组件间
+ *        | 事件总线$bus  ▁▁▁▁  任意组件间 (传递数据,调用回调函数、可以发送请求)
  *              | main文件实例化前,  Vue.prototype.$bus = new Vue()
  *              | 绑定事件: this.$bus.$on('eventName'，(data)=>{})
  *                触发事件: this.$bus.$emit('eventName'，data)
  *                移除事件: this.$off('eventName')
  * 
+ *    Ajax发送请求:
+ *        1) vue-resource使用.then.catch:
+ *                在main.js | import vueResource from 'vue-resource' // 引入插件
+ *                          | ue.use(vueResource)                    // 使用插件
+ *                在发请求的组件 | this.$http.get('/url').then( (res) => { callback } , (err) => { // error callback } )
+ *        2) axios使用anync、await:
+ *                在发请求的组件 | import axios from 'axios'
+ *                              | async mounted() { const result = await axios.get('/url', { params:{xx:yy} })
+ *                              | async mounted() { const result = await axios.post('/url', {})
+ *            注意：如果是封装的axios, 返回Promise对象 return axios[get/post]('/url', reqParam).then(res=> return res).catch() 
+ *                  .then.catch里面即使写了return，还是会包裹一层promise，所以最终返回的都是promise对象，所以外面调用使用anync、await
  * 
  * 
+ *    Mint UI的使用(设置按需加载css):
+ *        1) 全局注册使用
+ *                在main.js | import { Button } from 'mint-ui'
+ *                          | Vue.component(Button.name, Button)
+ *                在使用的组件 | <mt-button type="default">default</mt-button>
+ *        2) 局部使用
+ *                在使用的组件 | import { Toast } from 'mint-ui';
+ *                            | 直接使用: Toast('Upload Complete')
+ * 
+ *        按需加载css：https://mint-ui.github.io/docs/#/zh-cn2/quickstart
+ *            | 下包npm install babel-plugin-component -D
+ *            | 设置.babelrc: "plugins": [["component", [
+ *                               {
+ *                                 "libraryName": "mint-ui",
+ *                                 "style": true
+ *                                 "style": true
+ *                               }
+ *                             ]]]
+ *    路由的使用:
+ * 
+ *        1) main.js: 
+ *                import router from './router'  ------  import Vue from 'vue'
+ *                new Vue({router})                      import VueRouter from 'vue-router'
+ *                // 注册路由                             import routes from './routes.js'   //导入routes路由
+ *    
+ *                                                       Vue.use(VueRouter);                 // 使用路由器                ------  import About from '../pages/About.vue'
+ *                                                                                                                               import Home from '../pages/Home.vue'
+ *                                                       export default new VueRouter({
+ *                                                           mode: 'history',    // 去除地址中的 #/  (在创建VueRouter实例时)        export default [
+ *                                                           routes                                                                   {      
+ *                                                       })                                                                               path: '/about',
+ *                                                                                                                                        redirect: '/about' // 重定向
+ *                                                                                                                                    },
+ *                                                                                                                                    {
+ *                                                                                                                                        path: '/home/message',
+ *                                                                                                                                        component: Message,// 使用组件Message
+ *                                                                                                                                        children: []       // 嵌套(二级路由)
+ *                                                                                                                                    }
+ *                                                                                                                                 ]
+ *      2) 要使用的组件:
+ *                | 把新组建定义好
+ *                | <router-link to="/about">about</router-link>  // 路由链接 (改url) (会被解析成a标签, to解析成href)
+ *                | <router-view ></router-view>                  // 路由视图 (组件展示的位置)
+ *                | 写路由(routes)-url变化匹配的组件
+ * 
+ *      注意: <keep-alive></keep-alive>缓存组件、不适用实时页面
+ *            
+ *            类似React的路由三大属性:
+ *            $router访问路由器对象、$route访问当前路由
+ *                  ($outer有push、replace、back方法 【原生更改url】、类似this.history.push、thishistory.replace)
+ *                  ($route能拿 匹配/:id的值)
  * 
  */
 
