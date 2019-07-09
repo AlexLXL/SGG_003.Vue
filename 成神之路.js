@@ -13,7 +13,7 @@
  *        组件中的scope: 作用域，如果父子组件都没scope，父组件会用子组件的样式
  * 
  *    组件通信:
- *        | props  ▁▁▁▁  父子之间▁
+ *        | props  ▁▁▁▁  父子之间   props:['xx','yy']、props:{ xx:Object}、props:{xx:{type:Object,required:true}}
  *        | 自定义事件  ▁▁▁▁  子 --> 父
  *              | 在父组件: @addTodo="addTodo"
  *              | 在子组件：this.$emit("addTodo", data);
@@ -45,6 +45,9 @@
  *              | 绑定事件: this.$bus.$on('eventName'，(data)=>{})
  *                触发事件: this.$bus.$emit('eventName'，data)
  *                移除事件: this.$off('eventName')
+ * 
+ * 
+ * 
  * 
  */
 
@@ -81,7 +84,7 @@
   * 
   *         v-text     ---            --- 不解析
   *         v-html     ---            --- 向html标签中插入并解析 数据为标签的'<a></a>'
-  *         ref        ---            --- 访问元素对象     --- html设置ref="flag",获取:this.$refs.flag.xxx
+  *         ref        ---            --- 访问元素对象          --- html设置ref="flag",获取:this.$refs.flag.xxx
   *              
   * </div>
   * 
