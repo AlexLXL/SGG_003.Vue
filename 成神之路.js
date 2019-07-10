@@ -12,7 +12,6 @@
  *        data写法: data () { return xx}
  *        组件中的scope: 作用域，如果父子组件都没scope，父组件会用子组件的样式
  * 
- *    脚手架的基本配置:
  * 
  *    组件通信:
  *        | props  ▁▁▁▁  父子之间   props:['xx','yy']、props:{ xx:Object}、props:{xx:{type:Object,required:true}}
@@ -84,11 +83,11 @@
  *        1) main.js: 
  *                import router from './router'  ------  import Vue from 'vue'
  *                new Vue({router})                      import VueRouter from 'vue-router'
- *                // 注册路由                             import routes from './routes.js'   //导入routes路由
- *    
+ *                // 注册路由                             import routes from './routes.js'   
+ *                                                                                                                               // 定义路由routes
  *                                                       Vue.use(VueRouter);                 // 使用路由器                ------  import About from '../pages/About.vue'
  *                                                                                                                               import Home from '../pages/Home.vue'
- *                                                       export default new VueRouter({
+ *                                                       export default new VueRouter({      // 实例化路由器
  *                                                           mode: 'history',    // 去除地址中的 #/  (在创建VueRouter实例时)        export default [
  *                                                           routes                                                                   {      
  *                                                       })                                                                               path: '/about',
@@ -183,7 +182,7 @@
   *         }
   * 
   *         beforeCreate(){}    created(){}   // 八个生命周期(beforeDestroy(){ 一般用来删定时器 })
-  *         beforeMount(){}     mounted(){}
+  *         beforeMount(){}     mounted(){}                 (mounted(){ 一般用来发请求 })
   *         beforeUpdate(){}    updated(){} 
   *         beforeDestroy(){}   destroyed(){}
   * 
