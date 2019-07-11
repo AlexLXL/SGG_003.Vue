@@ -29,6 +29,7 @@
  * 
  * ----------------------------------------------------------------------------
  * //暴露{直接修改数据的方法}
+ * //mutations和actions都是可传参option的
  *  mutatiosn.js:
  *                  import { ADD, DEL } from './mutation-types.js'
  *                  
@@ -36,7 +37,7 @@
  *                      [ADD](state) {      // 传入state修改状态,store.js引入了，所以可以传         ( ["func"](){} 等价 func:function(){} )
  *                          state.count++
  *                      },
- *                      [DEL](state) {
+ *                      [DEL](state, option) {
  *                          state.count--
  *                      }
  *                  }
@@ -48,6 +49,7 @@
  * 
  * ----------------------------------------------------------------------------
  * //暴露{异步 和 methods的方法}
+ * //mutations和actions都是可传参option的
  * actions.js:
  *                  // 官网: Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象, 什么commit、state都有
  *                  import { ADD, DEL } from './mutation-types.js'
@@ -59,7 +61,7 @@
  *                      sub({ commit }) {                       (用法二)
  *                          commit(DEL)
  *                      },
- *                      oddToAdd({ commit, state }) {           (用法三)
+ *                      oddToAdd({ commit, state }, option) {   (用法三)
  *                          ((state.count & 1) === 1) && commit(ADD)
  *                      },
  *                  }
