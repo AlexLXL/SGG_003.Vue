@@ -14,6 +14,7 @@ function MVVM(options) {
 
     this._initComputed();
 
+    // 先劫持数据再模板解析, 传data和实例vm
     observe(data, this);
 
     // 实例化对象的时候，调用了模板解析-表达式

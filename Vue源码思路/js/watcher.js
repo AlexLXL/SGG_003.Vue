@@ -1,12 +1,16 @@
-function Watcher(vm, expOrFn, cb) {
+function Watcher(vm, expOrFn, cb) { // 实例、"msg"、callback
+    // cb是回调函数，模板解析传进来的，用于更新页面
     this.cb = cb;
     this.vm = vm;
     this.expOrFn = expOrFn;
-    this.depIds = {};
+
+    // 创建depIds对象, 存dep
+    this.depIds = {};   // 每个watcher里面都有depIds这个属性
 
     if (typeof expOrFn === 'function') {
         this.getter = expOrFn;
     } else {
+        // 创建getter这个方法而已，下面代码用
         this.getter = this.parseGetter(expOrFn.trim());
     }
 
@@ -14,14 +18,17 @@ function Watcher(vm, expOrFn, cb) {
 }
 
 Watcher.prototype = {
+    // 劫持对象的data发生改变调用watcher.update
     update: function() {
         this.run();
     },
+    // 更新页面
     run: function() {
         var value = this.get();
         var oldVal = this.value;
         if (value !== oldVal) {
             this.value = value;
+            // 更新页面
             this.cb.call(this.vm, value, oldVal);
         }
     },
@@ -40,12 +47,16 @@ Watcher.prototype = {
         // 这一步是在 this.get() --> this.getVMVal() 里面完成，forEach时会从父级开始取值，间接调用了它的getter
         // 触发了addDep(), 在整个forEach过程，当前wacher都会加入到每个父级过程属性的dep
         // 例如：当前watcher的是'child.child.name', 那么child, child.child, child.child.name这三个属性的dep都会加入当前watcher
-        if (!this.depIds.hasOwnProperty(dep.id)) {
-            dep.addSub(this);
-            this.depIds[dep.id] = dep;
+        
+        if (!this.depIds.hasOwnProperty(dep.id)) {  // 判断depIds里有没目前将加入dep的id
+            dep.addSub(this);   // 通过传入的dep，调用dep.addSub(watcher),因为是Dep.target(watcher)调的addDep，所以this指向watcher
+            this.depIds[dep.id] = dep;              // depIds加入dep
         }
     },
+
+    // get方法-拿值msg的值
     get: function() {
+        // ★让Dep.target = 监视对象(watcher) -- 然后就是你调我我调你，很happy
         Dep.target = this;
         var value = this.getter.call(this.vm, this.vm);
         Dep.target = null;
@@ -57,9 +68,10 @@ Watcher.prototype = {
 
         var exps = exp.split('.');
 
-        return function(obj) {
+        return function(obj) {  // 返回的这个就是this.getter
             for (var i = 0, len = exps.length; i < len; i++) {
                 if (!obj) return;
+                // obj[exps[i]] ==> vm.msg[0] , 其实就是拿到msg的值
                 obj = obj[exps[i]];
             }
             return obj;
