@@ -110,7 +110,7 @@
  *            类似React的路由三大属性:
  *            $router访问路由器对象、$route访问当前路由
  *                  ($router有push、replace、back方法 【编程式更改url】、类似this.history.push、thishistory.replace)
- *                  ($route能拿 fullpath全部路径 和 path最后的路径)
+ *                  ($route能拿 fullpath全部路径 和 path最后的路径 , 请求参数也能拿)
  * 
  */
 
