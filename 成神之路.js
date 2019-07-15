@@ -1,7 +1,7 @@
 /**
  * 脚手架vue-cli:                 
- *    安装:npm install -g vue-cli
- *        vue init webpack my-project (Set up unit tests ：No，Setup e2e tests with Nightwatch?No)
+ *    安装2.x: npm install -g vue-cli 
+ *             vue init webpack my-project (Set up unit tests ：No，Setup e2e tests with Nightwatch?No)
  * 
  *        npm start 运行 ( 配置自动打开页面-config/index.js 、配置忽略enlint语法检测-eslintrc.js )
  *        npm run build 打包 
@@ -109,8 +109,8 @@
  *            
  *            类似React的路由三大属性:
  *            $router访问路由器对象、$route访问当前路由
- *                  ($outer有push、replace、back方法 【原生更改url】、类似this.history.push、thishistory.replace)
- *                  ($route能拿 匹配/:id的值)
+ *                  ($router有push、replace、back方法 【编程式更改url】、类似this.history.push、thishistory.replace)
+ *                  ($route能拿 fullpath全部路径 和 path最后的路径)
  * 
  */
 
