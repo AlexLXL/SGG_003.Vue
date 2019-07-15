@@ -1,7 +1,14 @@
 /**
  * 脚手架vue-cli:                 
- *    安装2.x: npm install -g vue-cli 
- *             vue init webpack my-project (Set up unit tests ：No，Setup e2e tests with Nightwatch?No)
+ *    安装2.x: npm install -g vue-cli                       安装2.x
+ *             vue init webpack my-project (eslint ? Y)     创建项目
+ *    安装3.x: 
+ *            npm uninstall vue-cli -g    写在2.x
+ *            npm install -g @vue/cli     安装3.x
+ *            npm install -g @vue/cli-init     可拉取2.x
+ * 
+ *            vue create hello-world            创建项目
+ * 
  * 
  *        npm start 运行 ( 配置自动打开页面-config/index.js 、配置忽略enlint语法检测-eslintrc.js )
  *        npm run build 打包 
@@ -19,17 +26,18 @@
  *              | 在父组件: @addTodo="addTodo"
  *              | 在子组件：this.$emit("addTodo", data);
  * 
- *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")
- * 
- *              | 父组件:
- *                    | <Child>
+ *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")                     [子 --> 父 父组件:<child><template slot-scope="props">xxx</template></child>] --- "https://www.jianshu.com/p/31674b727954"
+ *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             [公共组件--Vue.component('Header', Header)]
+ *              | 父组件: 
+ *                    | <Header title="你好">
  *                    |     <div slot="xxx"> 对应的标签结构</div>
  *                    |     <div slot="yyy"> 对应的标签结构</div>
- *                    | </Child>
+ *                    | </Header>
  * 
- *              | 子组件:
+ *              | 子组件Header:
  *                    | <template>
  *                    |     <slot name="xxx" />
+ *                    |     <p>{{title}}</p>
  *                    |     <slot name="yyy" />
  *                    | </template>
  * 
@@ -108,10 +116,14 @@
  *      注意: <keep-alive></keep-alive>缓存组件、不适用实时页面
  *            
  *            类似React的路由三大属性:
- *            $router访问路由器对象、$route访问当前路由
- *                  ($router有push、replace、back方法 【编程式更改url】、类似this.history.push、thishistory.replace)
- *                  ($route能拿 fullpath全部路径 和 path最后的路径 , 请求参数也能拿)
+ *            $router访问路由器对象【编程式更改url】、$route访问当前路由
+ *              | push                                | fullpath  完整路径
+ *              | replace                             | path      最后的路径
+ *              | back()                              | ?xxx      拿参数params
+ *                                                    | meta      routes里设置给$route
  * 
+ *                  ($router有push、replace、back方法 【编程式更改url】、类似this.history.push、thishistory.replace)
+ *                  ($route能拿 fullpath全部路径 和 path最后的路径 , 请求参数也能拿 , ★meta+v-show特定组件显示的时候-控制某个组件显示影藏)
  */
 
 /**
