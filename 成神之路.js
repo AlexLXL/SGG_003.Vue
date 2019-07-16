@@ -2,12 +2,15 @@
  * 脚手架vue-cli:                 
  *    安装2.x: npm install -g vue-cli                       安装2.x
  *             vue init webpack my-project (eslint ? Y)     创建项目
+ *            yarn start                                    运行
+ * 
  *    安装3.x: 
  *            npm uninstall vue-cli -g    写在2.x
  *            npm install -g @vue/cli     安装3.x
  *            npm install -g @vue/cli-init     可拉取2.x
  * 
- *            vue create hello-world            创建项目
+ *            vue create hello-world      创建项目
+ *            yarn serve                  运行
  * 
  * 
  *        npm start 运行 ( 配置自动打开页面-config/index.js 、配置忽略enlint语法检测-eslintrc.js )
@@ -225,6 +228,7 @@
  *      文件路径显示绝对路径
  *      设置中Mouse Wheel Zoom设置放大缩小
  *      自动保存
+ *      Auto Reveal 关闭自动打开文件目录
  * 
  * 修改了快捷键:
  *      整理代码: Ctrl + shift + l
