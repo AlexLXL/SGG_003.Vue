@@ -27,7 +27,7 @@
  *              | 在子组件：this.$emit("addTodo", data);
  * 
  *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")                     [子 --> 父 父组件:<child><template slot-scope="props">xxx</template></child>] --- "https://www.jianshu.com/p/31674b727954"
- *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             [公共组件--Vue.component('Header', Header)]
+ *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             [公共组件--Vue.component('Header', Header)] , 'Header' --- 传入组件的名字  Header --- 使用时候的名字
  *              | 父组件: 
  *                    | <Header title="你好">
  *                    |     <div slot="xxx"> 对应的标签结构</div>
