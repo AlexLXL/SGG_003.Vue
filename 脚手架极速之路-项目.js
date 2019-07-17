@@ -1,9 +1,9 @@
 /**
- * 快速迭代脚手架vue-cli:
- *       2.x ▁  3.x ●
+ * 快速迭代脚手架vue-cli: (3.x移动css/reset.css和html到public文件夹)
+ *       2.x ▁  3.x ● 
  * 
  *      ▁ 配置自动打开页面 (./config/index.js-autoOpenBrowser)
- *      ▁ 配置exlintrc检测 (./eslintrc.js)
+ *      ▁ 配置exlintrc检测 (eslintrc.js的rules    package.jon的rules加)
  * 
  * 
  *      ● HTML --- ①meta适配 ②样式重置 ③解决移动端0.3s点击延迟, fastclick库
@@ -61,7 +61,7 @@
  * 
  *  import Swiper from "swiper";  // 导入Swiper
  * 
- *  var mySwiper = new Swiper(".swiper-container", {  // 实例化的方式使用(页面加载完成之后、异步数据更新DOM加载完后)
+ *  var mySwiper = new Swiper(".swiper-container", {  // 实例化的方式使用(页面加载完成之后、watch不能使用时因为watch里的代码是同步的，而发请求更新数据刷新页面是异步的)
  *     loop: true, // 循环模式选项                              | 配合**vm.$nextTick(callback)使用** --- 在下次 DOM 更新循环结束之后执行延迟回调。                        
  *     pagination: {                                                    | watch+vm.$nextTick(callback)                                                
  *       el: ".swiper-pagination"                                       | this.$store.dispatch('actions',() => {vm.$nextTick(callback)} )             
