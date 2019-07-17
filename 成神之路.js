@@ -208,8 +208,8 @@
   *          } 
   *           
   * 
-  *         watch: { name(val){} }            // 局部监视(监视xx改变就做一些操作)
-  *           | val就是最新的name                     | 另外一种写法:todos:{ deep: true,handler: function(val) {} }
+  *         watch: { dataName(val){} }            // 局部监视(监视xx改变就做一些操作)
+  *           | val就是最新的dataName                     | 另外一种写法:todos:{ deep: true,handler: function(val) {} }
   * 
   *     })
   *     
