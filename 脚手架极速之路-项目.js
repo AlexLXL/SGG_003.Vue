@@ -6,7 +6,7 @@
  *      ● 配置exlintrc检测 (eslintrc.js的rules    package.jon的rules加)
  * 
  * 
- *      ● HTML --- ①meta适配 ②样式重置 ✘✘删 ③解决移动端0.3s点击延迟, fastclick库 
+ *      ● HTML --- ①meta适配 ②引样式重置**css是url的路径，不是./** ✘✘删 ③解决移动端0.3s点击延迟, fastclick库 
  * 
  * 
  *      ● 建文件夹( api、router路由器、store状态管理、common混合、components、pages路由组件、filter过滤器、mock模拟后台数据)
@@ -27,7 +27,7 @@
  *      ● 配置代理(手动) ===2.x上  3.x下===
  *        ===config/index.js===                                                  
  *         proxyTable: {
- *           '/api': {
+ *           '/api': {  // 以api开头的路径
  *             target: 'http://localhost:5000',  // 目标服务器
  *             changeOrigin: true, // 支持跨域
  *             pathRewrite: {
@@ -63,7 +63,7 @@
  * 
  *  import Swiper from "swiper";  // 导入Swiper
  * 
- *  var mySwiper = new Swiper(".swiper-container", {  // 实例化的方式使用(页面加载完成之后、watch不能使用时因为watch里的代码是同步的，而发请求更新数据刷新页面是异步的)
+ *  var mySwiper = new Swiper(".swiper-container", {  // 实例化的方式使用(必须页面加载完成之后创建实例对象、watch不能使用时因为watch里的代码是同步的，而发请求更新数据刷新页面是异步的)
  *     loop: true, // 循环模式选项                              | 配合**vm.$nextTick(callback)使用** --- 在下次 DOM 更新循环结束之后执行延迟回调。                        
  *     pagination: {                                                    | watch+vm.$nextTick(callback)                                                
  *       el: ".swiper-pagination"                                       | this.$store.dispatch('actions',() => {vm.$nextTick(callback)} )             
@@ -89,7 +89,7 @@
  *      Validator.localize('zh_CN', {
  *        messages: zh_CN.messages,
  *        attributes: {
- *          phone: "手机号",  // 这里的东西都是input的name属性的值，组件html里的也是用的name的值，拿表单的值这些操作插件封装了
+ *          phone: "手机号",  // 这里的东西都是input的**name**属性的值，组件html里的也是用的name的值，拿表单的值这些操作插件封装了
  *          code: "验证码",   // 和提示文字相关
  *          name: "账号",
  *          pwd: "密码",

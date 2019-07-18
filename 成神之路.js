@@ -1,16 +1,17 @@
 /**
  * 脚手架vue-cli:                 
- *    安装2.x: npm install -g vue-cli                       安装2.x
- *             vue init webpack my-project (eslint ? Y)     创建项目
- *            yarn start                                    运行
- * 
  *    安装3.x: 
- *            npm uninstall vue-cli -g    写在2.x
+ *            npm uninstall vue-cli -g    卸载2.x
  *            npm install -g @vue/cli     安装3.x
- *            npm install -g @vue/cli-init     可拉取2.x
+ *            npm install -g @vue/cli-init     可拉取2.x(要使用2.x的话就拉)
  * 
  *            vue create hello-world      创建项目
- *            yarn serve                  运行
+ *          **yarn serve                  运行**
+ * 
+ * 
+ *    安装2.x: npm install -g vue-cli                       安装2.x
+ *             vue init webpack my-project (eslint ? Y)     创建项目
+ *             yarn start                                   运行
  * 
  * 
  *        npm start 运行 ( 配置自动打开页面-config/index.js 、配置忽略enlint语法检测-eslintrc.js )
@@ -30,7 +31,7 @@
  *              | 在子组件：this.$emit("addTodo", data);
  * 
  *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")                     [子 --> 父 父组件:<child><template slot-scope="props">xxx</template></child>] --- "https://www.jianshu.com/p/31674b727954"
- *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             [公共组件--Vue.component('Header', Header)] , 'Header' --- 传入组件的名字  Header --- 使用时候的名字
+ *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             **[公共组件--Vue.component('Header', Header)] , 'Header' --- 传入组件的名字  Header --- 使用时候的名字**
  *              | 父组件: 
  *                    | <Header title="你好">
  *                    |     <div slot="xxx"> 对应的标签结构</div>
