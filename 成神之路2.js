@@ -1,6 +1,22 @@
 /**
  * Vuex的使用:
  * ----------------------------------------------------------------------------
+ * // ***模块{每个 (组件) 的state、mutations、actions、getters}***
+ * modules文件夹
+ *            | user.js:
+ *                  const state = {}
+ *                  const mutations = {}
+ *                  const actions = {}
+ *                  const getters = {}
+ *                  
+ *                  export default {
+ *                    state,
+ *                    mutations,
+ *                    actions,
+ *                    getters
+ *                  }
+ * 
+ * ----------------------------------------------------------------------------
  * //创建store
  *  store.js:      
  *                  import Vue from 'vue'
@@ -10,6 +26,7 @@
  *                  import mutations from './mutations.js'
  *                  import actions from './actions.js'
  *                  import getters from './getters.js'
+ *                  import user from './modules/user.js'
  *                  
  *                  Vue.use(Vuex);                      // 使用Vuex
  *                  
@@ -17,7 +34,12 @@
  *                      state,                          
  *                      mutations,
  *                      actions,
- *                      getters
+ *                      getters,
+ *                    **modules: {**
+ *                        user,
+ *                        xxx,
+ *                        yyy
+ *                    **}**
  *                  })                                  
  *                                                      
  * ----------------------------------------------------------------------------
@@ -90,5 +112,11 @@
  *                        | ...mapMutations({ add:ADD, del:Del})        // ADD、DEL要从mutation-types引
  *                        | ...mapActions(['xx', 'xx'])
  * 
+ *                  modules:
+ *                        |...mapState({   (使用)
+ *                            user:state=>state.user.xxx               // state-总数据    user-模块     xxx-分数据(user里)
+ *                         }),
+ * 
+ *                        | ...mapMutations、...mapActions、...mapGetters // 正常使用, 总 分 都会调用
  * 
  */
