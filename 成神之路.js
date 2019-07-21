@@ -158,7 +158,7 @@
   *         v-else-if  ---            --- 控制显示内容                                                            @click.stop="xxx"     禁冒泡
   *         v-else     ---            --- 控制显示内容                                                            @keyup.enter="xxx"    键盘事件回车
   *         v-show     ---   display  --- 控制显示内容      ---  ***[ v-if和v-show的区别 ]  v-if直接从代码中删除了，v-show只是通过display来切换状态--display: none 和 display: ''***
-  *                                                                                  ***因此建议频繁切换的话用v-show比较好、v-if适合页面不大可能改变的***
+  *                                                                                  ***因此建议频繁切换的话用v-show比较好、v-if适合页面不大可能改变的、元素内有异步请求数据的(但还没请求回来，能防止报错)***
   * 
   * 
   *         v-for      ---   数组、对象--- 控制显示内容(遍历生成) ---  <li v-for="(per, index) in Persons" :key="per.id"> / <li v-for="(value, key, index) in Object">
@@ -250,6 +250,13 @@
  * 
  * 浏览器插件:
  *      Vue Devtools
+ * 
+ *      // 以下为stylus配置
+ *       "stylusSupremacy.insertColons": true, 
+ *       "stylusSupremacy.insertSemicolons": false, 
+ *       "stylusSupremacy.insertBraces": false, 
+ *       "stylusSupremacy.insertNewLineAroundImports": false,
+ *       "stylusSupremacy.insertNewLineAroundBlocks": false 
  * 
  * 
  * 控制台:ctrl + ~
