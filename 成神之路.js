@@ -103,6 +103,9 @@
  *                                                           routes                                                                   {      
  *                                                       })                                                                               path: '/about',
  *                                                                                                                                        redirect: '/about' // 重定向
+ *                                                                                                                                        meta: {            // ***路由元信息meta, 如果没有在对应url路径停留(重定向), meta不会设置上***
+ *                                                                                                                                           aaaa: true
+ *                                                                                                                                        }
  *                                                                                                                                    },
  *                                                                                                                                    {
  *                                                                                                                                        path: '/home/message',
@@ -133,10 +136,10 @@
   * Vue成神之路:
   * <style type="text/css">
   * 
-  *   /* Vue的过渡---结合<transition name="fade">使用 * / ( 开始结束状态默认是初始状态 )
-  *   .fade-enter{}           .fade-leave{}     // 开始时状态-出现/消失
-  *   .fade-enter-active{}                      // 过程设置transition: xx xs / animation: xx xs;
-  *   .fade-enter-to{}                          // 结束时状态       
+  *   Vue的过渡---结合<transition name="fade">使用  ( 开始结束状态默认是初始状态 )
+  *         .fade-enter{}           .fade-leave{}     // 开始时状态-出现/消失
+  *         .fade-enter-active{}                      // 过程设置transition: xx xs / animation: xx xs;
+  *         .fade-enter-to{}                          // 结束时状态       
   *   
   * </style>
   * 
