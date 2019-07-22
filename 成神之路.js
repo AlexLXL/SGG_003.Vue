@@ -100,7 +100,7 @@
  *                                                                                                                               import Home from '../pages/Home.vue'
  *                                                       export default new VueRouter({      // 实例化路由器
  *                                                           mode: 'history',    // 去除地址中的 #/  (在创建VueRouter实例时)        export default [
- *                                                           routes                                                                   {      
+ *                                                         0  routes                                                                   {      
  *                                                       })                                                                               path: '/about',
  *                                                                                                                                        redirect: '/about' // 重定向
  *                                                                                                                                        meta: {            // ***路由元信息meta, 如果没有在对应url路径停留(重定向), meta不会设置上***
@@ -156,7 +156,7 @@
   *      // 指令:                                                 | checkbox多选中,v-model为true就是选中,也可为['xx','yy']选中xx和yy
   *         v-model    ---   表单     --- 获取表单值(实时)  ---  <input type="text" v-model="msg"> v-model是输入框的值 / 下拉框选中, V-model在select标签，而不是option
   *         v-bind     ---   url、key --- 在标签属性加      ---  简写: :href :key :class :style :value(下拉框的值用id)
-  *         v-on       ---   事件     --- 加事件            ---  简写: @click="show" ( 在methods定义show ) | 可传参:@click="show1($event, 'xxx')"   
+  *         v-on       ---   事件     --- 加事件            ---  简写: @click="show" ( 在methods定义show ) | 可传参:@click="show1(**$event**, 'xxx')"  --- event.target拿当前节点 
   *         v-if       ---   去掉DOM  --- 控制显示内容                                                      装饰符:@click.prevent="xxx"  禁默认行为
   *         v-else-if  ---            --- 控制显示内容                                                            @click.stop="xxx"     禁冒泡
   *         v-else     ---            --- 控制显示内容                                                            @keyup.enter="xxx"    键盘事件回车
