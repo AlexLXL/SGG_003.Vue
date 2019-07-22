@@ -154,7 +154,7 @@
  *    注意: 在计算属性里面new scroll实例对象可能到值没更新一次数据就创建一个对象, 这是应该考虑用单例模式
  * 
  *          单例模式也会带来一些问题(display:none后无法滚动): 
- *              滚动对象会保存此时html节点的css和js位置 然后加代码，但display：none之后会找不到，这时向还能滚动需要s1.refresh()刷新一下实例对象s1，
+ *              滚动对象会保存此时html节点的css和js位置 然后加代码，但display：none之后会找不到，下次显示想滚动需要s1.refresh()刷新一下实例对象s1，
  *              如果是v-if把DOM删了，会导致找不到当时保存的html节点响应的css和js位置
  * 
  * 
@@ -224,7 +224,7 @@
  * Vue.set(obj,'attrName',value)  // 设置响应式属性
  * 
  * 原生事件：在自己组件里html元素的事件
- * 自定义事件：<引入组件名  @click="xxx" /> 写在引入组件内的所有事件
+ * 自定义事件：<引入组件名  @click="xxx" /> 写在引入组件内没有修饰的所有事件    <引入组件名  @click.native="xxx" /> 加native -- 原生事件 -- 给组件的根元素加事件,其他元素如果点击会冒泡到根元素的点击事件
  * 
  * v-model的原理:
  *      父组件:
@@ -232,5 +232,5 @@
  *          <子组件 :value="msg" @input="msg=$event" />           // 这里的input是自定义事件，通过this.$emit('input',data)触发
  * 
  *      子组件:
- *          <input @input="$emit(input，$event.target.value") />  // 触发input自定义事件,并通过$event把值传过去
+ *          <input :value="value" @input="$emit(input，$event.target.value") />  // value是上边传过来的   触发input自定义事件,并通过$event把值传过去
  */
