@@ -30,12 +30,12 @@
  *              | 在父组件: @addTodo="addTodo"
  *              | 在子组件：this.$emit("addTodo", data);
  * 
- *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")                     [子 --> 父 父组件:<child><template slot-scope="props">xxx</template></child>] --- "https://www.jianshu.com/p/31674b727954"
- *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             **[公共组件--Vue.component('Header', Header)] , 'Header' --- 传入组件的名字  Header --- 使用时候的名字**
- *              | 父组件: 
+ *        | 插槽 slot  ▁▁▁▁  父 --> 子 (传递"标签数据")                    作用域插槽：[子 --> 父 父组件:<child><template slot-scope="props"> <p>{{props}}xxx</p> </template></child>  获取子组件传过来的属性，props接收] --- "https://www.jianshu.com/p/31674b727954"
+ *              // 子组件放好插槽，父组件往插槽传递数据，然后显示             普通插槽： 子<slot>bb</slot> 父：导入子组件<Slot>aa</Slot>  最后：aa替换子的内容bb、且子组件只能有一个插槽、
+ *              | 父组件:                                                  具名插槽：<div slot="xxx">把整个<slot name="xxx" />替换掉
  *                    | <Header title="你好">
  *                    |     <div slot="xxx"> 对应的标签结构</div>
- *                    |     <div slot="yyy"> 对应的标签结构</div>
+ *                    |     <div slot="yyy"> 对应的标签结构</div>           **[全局组件--Vue.component('Header', Header)] , 'Header' --- 传入组件的名字  Header --- 使用时候的名字**
  *                    | </Header>
  * 
  *              | 子组件Header:
@@ -115,7 +115,7 @@
  *                                                                                                                                 ]
  *      2) 要使用的组件:
  *                | 把新组建定义好
- *                | <router-link to="/about">about</router-link>  // 路由链接 (改url) (会被解析成a标签, to解析成href)
+ *                | <router-link to="/about">about</router-link>  // 路由链接 (改url) (会被解析成a标签, to解析成href) ***属性可加replace，不添加到历史记录***
  *                | <router-view ></router-view>                  // 路由视图 (组件展示的位置)
  *                | 写路由(routes)-url变化匹配的组件
  * 
