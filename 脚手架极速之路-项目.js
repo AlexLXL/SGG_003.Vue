@@ -14,7 +14,7 @@
  *          stylus              ---   yarn add stylus stylus-loader -D
  *          路由、ajax           ---   yarn add vue-router axios
  *          表单验证vee-validate ---    yarn add vee-validate
- *          vuex、swiper、dayjs  ---   yarn add vuex swiper dayjs
+ *          vuex、swiper、dayjs  ---   yarn add vuex swiper dayjs better-scroll vue-lazyload
  *          Mint UI(按需加载)    ---    yarn add mint-ui -S   **  yarn add babel-plugin-component -D
  * 
  * 
@@ -160,6 +160,20 @@
  * 
  * -------------------------------------------------------------------------------------------------------------------------------------
  * 
+ * vue-lazyload懒加载
+ *      --有转圈圈的等待效果，然后图片需要才加载
+ *      
+ *      使用:
+ *            yarn add vue-lazyload
+ * 
+ *     main.js:
+ *            import VueLazyload from 'vue-lazyload'
+ *            Vue.use(VueLazyload, { loading: 'dist/loading.gif' }  // loading图
+ * 
+ *     组件使用:
+ *            <img v-lazy="img.src" >
+ * 
+ * -------------------------------------------------------------------------------------------------------------------------------------
  * 
  * 
  * -------------------------------------------------------------------------------------------------------------------------------------
@@ -177,6 +191,46 @@
  *            前端拿请求回来的用户数据更新vuex自动登录
  *            退出登录时发送请求，服务器会把session、账号id删了
  * -------------------------------------------------------------------------------------------------------------------------------------
+ * 
+ * ***静态引入***:  import aaa from './xxx'             // 全部打包成一个js文件
+ * ***动态引入***:  const xxx = () => import(./xxx)     // 分割打包, 按需加载  ---  在routes使用过一次
+ * 
+ * **Vue混合**(提取公共代码)
+ *      mixin.js:
+ *          export const mixin = {	// 分别暴露
+ *          	  正常组件js部份
+ *          }
+ *      组件使用:
+ *          <script>
+ *          import {mixin} from './mixin.js'    // 分别暴露  用  解构赋值
+ *          export default {
+ *              mixins:[mixin]
+ *          }
+ * 
+ * // 最终都是在组件的html里使用
+ * // https://cn.vuejs.org/v2/guide/components-dynamic-async.html
+ * **动态组件**:    **[Tag变换]**
+ *      <keep-alive>
+ *          <component :is="ComponentName"></component>   // ComponentName写成data，动态改变，组件就动态改变
+ *      </keep-alive>
+ * **异步组件**:    **[异步加载的组件]**
+ *      Vue.component(
+ *          'async-component1',                           // 异步组件名，在组件html使用
+ *          () => import('./my-async-component')          // 引入自己写的需要异步加载的组件
+ *      )
+ * 
+ * 
+ * -------------------------------------------------------------------------------------------------------------------------------------
  * Vue.set(obj,'attrName',value)  // 设置响应式属性
  * 
+ * 原生事件：在自己组件里html元素的事件
+ * 自定义事件：<引入组件名  @click="xxx" /> 写在引入组件内的所有事件
+ * 
+ * v-model的原理:
+ *      父组件:
+ *          <子组件 v-model="msg" />                              // 这两个是等效的
+ *          <子组件 :value="msg" @input="msg=$event" />           // 这里的input是自定义事件，通过this.$emit('input',data)触发
+ * 
+ *      子组件:
+ *          <input @input="$emit(input，$event.target.value") />  // 触发input自定义事件,并通过$event把值传过去
  */
