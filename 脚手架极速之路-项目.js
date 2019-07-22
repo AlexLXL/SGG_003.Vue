@@ -135,7 +135,10 @@
  *      // 引入better-scroll
  *      import BScroll from 'better-scroll'
  *      // 实例化创建滚动对象 
- *      const s1 = new BScroll(".menu-wrapper", { click: true });  // css选择器、 ***取消better-scroll的禁止点击事件***
+ *      const s1 = new BScroll(".menu-wrapper", { // css选择器、 ***取消better-scroll的禁止点击事件***
+ *         click: true
+ *         scrollX: true // ***水平滑动***
+ *      });  
  * 
  *   事件:
  *      s1.on('scroll', {x, y})         --- 滚动进行, 拿坐标x和y, ***注意正负问题***
