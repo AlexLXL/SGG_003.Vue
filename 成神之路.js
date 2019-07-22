@@ -175,7 +175,7 @@
   * 
   * 
   * <script type="text/javascript">
-  *     // Vue.filte('formatDate1', (value, option)=>{return})配合管道使用 --- 过滤器
+  *     // Vue.filter('formatDate1', (value, option)=>{return})配合管道使用 --- 过滤器
   *            | formatDate1:  过滤器名字
   *            | value:        管道的输入数据
   *            | option:       传参
