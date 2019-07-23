@@ -233,4 +233,23 @@
  * 
  *      子组件:
  *          <input :value="value" @input="$emit(input，$event.target.value") />  // value是上边传过来的   触发input自定义事件,并通过$event把值传过去
+ * 
+ * 
+ * 路由守卫:
+ *    https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
+ *    前置路由守卫: (拦下来看是都满足特定条件才允许进入路由url)
+ *              全局守卫 // router的index.js：
+ *  		            router.beforeEach((to, from, next) => {})
+ *                     | to.path   --    to和$route极像
+ *                     | next()    --    放行
+ *                     | next('/login')
+ *         
+ *             局部守卫 // 组件内使用，和data、methods同级
+ *                  beforeRouterEnter(to, from, next){}
+ *                     | next( component => { if(component.$store.state.user.user._id){...} }) 
+ *                         -- 首先局部守卫拿不到实例对象this，要用components代替，后面用到vuex的modules写法state.user.user
+ *            
+ * 
+ *    后置守卫: 一般用在使用了<keep-alive></keep-alive>然后有这样一个需求:更换组件之后清除定时器
+ * 
  */
