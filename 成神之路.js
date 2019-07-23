@@ -265,3 +265,15 @@
  * 控制台:ctrl + ~
  */
 
+/**
+ * class改样式:
+ *      :class="数据"             // 也可以运用成[数组][0]的方式来动态设置样式
+ *      :class="{on:true/false}"  // 是否使用on这个属性 
+ *      :class="[classA, classB]" // 计算属性修改classA、classB为类名
+ * 
+ * style改样式:***小驼峰命名***
+ *      :style="{fontSize:size+'px'}"
+ *      :style="[styleFont, styleColor]" --- tyleFont:{fontSize: '16px'}
+ * 
+ */
+
