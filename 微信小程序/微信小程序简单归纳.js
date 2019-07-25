@@ -130,3 +130,31 @@
  // view--div   text--span css的page表示当前页面、1rpx = 1物理像素 = 0.5px/0.333px (取决dpr)
  // 没有数据代理,要this.data.xxx   wxd01f5ac5922a9a67
  // project.config.json和sitemap.json是重新引入项目的时候编辑器自己加的
+
+
+ /**
+  * 
+  * // app.vue不加template, 组件样式不加scrope
+  * mpvue:
+  *     # 1. 先检查下 Node.js 是否安装成功
+  *     $ node -v
+  *     $ npm -v
+  *     
+  *     # 2. 由于众所周知的原因，可以考虑切换源为 taobao 源
+  *     $ npm set registry https://registry.npm.taobao.org/
+  *     
+  *     # 3. 全局安装 vue-cli
+  *     $ npm install --global vue-cli@2.9
+  *     
+  *     # 4. 创建一个基于 mpvue-quickstart 模板的新项目
+  *     $ vue init mpvue/mpvue-quickstart my-project ( 不装vuex)
+  *     
+  *     # 5. 安装依赖，走你
+  *     $ cd my-project
+  *     $ npm install    // 下包
+  *     $ npm run dev    // 打包成dist
+  * 
+  *     # 6. 项目在vscode打开
+  *              |  npm start运行 (更新dist) , 微信开发者工具查看效果
+  * 
+  */
