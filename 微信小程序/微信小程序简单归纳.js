@@ -88,6 +88,23 @@
  *          var appData = getApp()                              获取app data
  *          appData.data.isPlayMusic = this.data.isPlay         设置app data
  * 
+ * -------------------------------------------------------------------------------------------------
+ * 
+ * getUserInfo获取用户信息 (api/开放接口/用户信息):
+ * 
+ *      在首页加载完onLoad之后 (页面加载完后 ***只会运行一次***，之后用户登录已经不关这里事):
+ *          wx.getUserInfo({
+ *            success:(res) => { console.log(res.rawData) }     ---    获取到用户信息
+ *            fail:(err) => { console.log(err.errMsg) }         ---    打印错误
+ *          })
+ * 
+ *      button获取用户信息 (组件/表单组件/button)
+ *          <button class="userLogin" open-type="getUserInfo" bindgetuserinfo="userLogin">用户登录</button>
+ *                     | open-type="getUserInfo"      ---   点击打开---获取用户信息     // "share" 点击打开 --- 分享
+ *                     | bindgetuserinfo="userLogin"  ---   确认取消获取到用户信息触发的回调函数
+ *                                                                              | userLogin(success){if(success.detail.rawData){}}
+ *                                                                              | 无论是确认还是取消都会返回差不多的success对象, 判断success.detail.rawData是否存在来判断是否确认登录     
+ * 
  * 
  * -------------------------------------------------------------------------------------------------
  *    提示框(api/界面/交互)    wx.showToast(Object object)
