@@ -61,6 +61,7 @@
  *    路由跳转 (api/路由)                   | 这种写法是导入index里所有名为index的文件(整个page)
  *              wx.navigateTo({ url: '/pages/index/index' }) --- 能返回
  *              wx.redirectTo({})                            --- 不能返回
+ *              wx.switchTab({})                             --- 跳转TabBar页面使用
  * 
  * -------------------------------------------------------------------------------------------------
  *    swiper轮播 (组件/视图容器/swiper)
@@ -72,6 +73,8 @@
  *                  <image src="/images/02.jpg"></image>
  *                </swiper-item>
  *              </swiper>
+ *      
+ *          事件: bindchange --- 图片切换的时候触发,(event.mp.detail.current拿当前图片的index)
  * 
  * -------------------------------------------------------------------------------------------------
  * 
@@ -118,7 +121,55 @@
  *          wx.onBackgroundAudioPlay(function callback)  监听音乐开始暂停 (后台播放为主，手机下拉下来那个播放暂停  ---  用于改变图标的开始暂停，配合appData来使用)
  *          wx.onBackgroundAudioPause(function callback) 
  * 
+ *    修改标题(api/界面/导航栏)
+ *          wx.setNavigationBarTitle( {title: 'xxxx'} )
+ * 
+ * 
  * -------------------------------------------------------------------------------------------------
+ *    input (组件/表单组件/input)
+ *          placeholder-class   ---   修改placeholder样式
+ * 
+ *      事件: bindconfirm       ---    按完成按钮 ***(小程序里event.mp.detail.value能拿input值，mpvue可以用v-model拿)***
+ * 
+ *          Vue官网: 原生组件的层级高于非原生组件
+ * 
+ * -------------------------------------------------------------
+ * 
+ *    发请求(api/网络/发送请求)
+ *          wx.request(Object object)
+ * 
+ *        ***======= ================***
+ *          mpvue封装 -- 发请求:
+ *                request.js
+ *                          import config from './config.js'
+ *                          
+ *                          export default function requese(url, data = {}, method = 'GET') {
+ *                            return new Promise((resolve, reject) => {
+ *                              wx.request({
+ *                                url: config.host + url,
+ *                                data,
+ *                                method,
+ *                                success: (result) => {
+ *                                  resolve(result.data)
+ *                                },
+ *                                fail: (err) => {
+ *                                  reject(err)
+ *                                },
+ *                              });
+ *                            })
+ *                          }
+ * 
+ *                config.js
+ *                          export default {
+ *                            host: 'http://localhost:3000'
+ *                          }
+ *        ***======= =================***
+ *          
+ * -------------------------------------------------------------------------------------------------
+ * 
+ * 
+ * 
+ * 
  * 
  * -------------------------------------------------------------------------------------------------
  * 
@@ -156,5 +207,16 @@
   * 
   *     # 6. 项目在vscode打开
   *              |  npm start运行 (更新dist) , 微信开发者工具查看效果
+  * 
+  * 
+  *                       微信小程序的事件                    mpvue
+  *  事件(bing换成@)           bindtap                       @click          
+  *                           bindchange                    @change   --- swiper的切换事件
+  * 
+  * 接受路由参数      onLoad:function(**options**)         mounted() { console.log(**this.$mp.query.booklist**) }
+  * 
+  * 
+  * 
+  * 
   * 
   */
