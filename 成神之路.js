@@ -100,7 +100,7 @@
  *                                                                                                                               import Home from '../pages/Home.vue'
  *                                                       export default new VueRouter({      // 实例化路由器
  *                                                           mode: 'history',    // 去除地址中的 #/  (在创建VueRouter实例时)        export default [
- *                                                         0  routes                                                                   {      
+ *                                                           routes                                                                   {      
  *                                                       })                                                                               path: '/about',
  *                                                                                                                                        redirect: '/about' // 重定向
  *                                                                                                                                        meta: {            // ***路由元信息meta, 如果没有在对应url路径停留(重定向), meta不会设置上***
@@ -134,14 +134,6 @@
 
 /**
   * Vue成神之路:
-  * <style type="text/css">
-  * 
-  *   Vue的过渡---结合<transition name="fade">使用  ( 开始结束状态默认是初始状态 )
-  *         .fade-enter{}           .fade-leave{}     // 开始时状态-出现/消失
-  *         .fade-enter-active{}                      // 过程设置transition: xx xs / animation: xx xs;
-  *         .fade-enter-to{}                          // 结束时状态       
-  *   
-  * </style>
   * 
   * <div id="app">
   *     <div>   // 表达式两种使用
@@ -168,7 +160,7 @@
   * 
   *         v-text     ---            --- 不解析
   *         v-html     ---            --- 向html标签中插入并解析 数据为标签的'<a></a>'
-  *         ref        ---            --- 访问元素对象          --- html设置ref="flag",获取:this.$refs.flag.xxx
+  *         ref        ---            --- 访问元素对象          --- html设置ref="flag",获取:this.$refs.flag.xxx --- **能够通过ref调用子组件的方法**
   *              
   * </div>
   * 
@@ -186,7 +178,10 @@
   *            | example:       el.innerText = binding.value.toUpperCase();
   * 
   *     const vm = new Vue({
-  * 
+  *         props:['']
+  *         ***props和state重名***
+  *         ***props的值会第一时间覆盖state的值，但如果页面加载完mounted等有修改state的值，最终 会使用修改后的值***
+  *         
   *         el: '#app',     // 入口(选择器)
   * 
   *         data: {},      // 数据(属性)
@@ -221,6 +216,17 @@
   *     
   *     vm.$watch( 'name', fn )               // 全局监视,监听属性name变化,val:实时name
   * </script>
+  * 
+  * 
+  * <style type="text/css">
+  * 
+  *   Vue的过渡---结合<transition name="fade">使用  ( 开始结束状态默认是初始状态 )
+  *         .fade-enter{}           .fade-leave{}     // 开始时状态-出现/消失
+  *         .fade-enter-active{}                      // 过程设置transition: xx xs / animation: xx xs;
+  *         .fade-enter-to{}                          // 结束时状态       
+  *   
+  * </style>
+  * 
   */
 
 
