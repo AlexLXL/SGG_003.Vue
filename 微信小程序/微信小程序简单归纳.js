@@ -222,7 +222,7 @@
   * ***每新增一个page都要在app.json里注册(写)***
   * app.json                                               路径没/根目录   例:pages/index/main      修改后都要重启yarn start更新dist   
   * page里面都有   index.vue     main.js---写法一致         有/根路径(路由使用最多)
-  *     
+  * App.vue       可设置page样式 width 100% height 100%
   * 
   * 
   * 
