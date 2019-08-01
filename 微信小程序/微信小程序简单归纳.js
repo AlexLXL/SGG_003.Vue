@@ -95,18 +95,18 @@
  * 
  * getUserInfo获取用户信息 (api/开放接口/用户信息):
  * 
- *      在首页加载完onLoad之后 (页面加载完后 ***只会运行一次***，之后用户登录已经不关这里事):
+ *      在首页加载完onLoad之后 (页面加载完后 ***检测缓存是否登录过，只会运行一次***，之后用户登录已经不关这里事):
  *          wx.getUserInfo({
- *            success:(res) => { console.log(res.rawData) }     ---    获取到用户信息
+ *            success:(res) => { console.log(res.rawData/res.userInfo) }     ---    获取到用户信息
  *            fail:(err) => { console.log(err.errMsg) }         ---    打印错误
  *          })
  * 
  *      button获取用户信息 (组件/表单组件/button)
  *          <button class="userLogin" open-type="getUserInfo" bindgetuserinfo="userLogin">用户登录</button>
  *                     | open-type="getUserInfo"      ---   点击打开---获取用户信息     // "share" 点击打开 --- 分享
- *                     | bindgetuserinfo="userLogin"  ---   确认取消获取到用户信息触发的回调函数
- *                                                                              | userLogin(success){if(success.detail.rawData){}}
- *                                                                              | 无论是确认还是取消都会返回差不多的success对象, 判断success.detail.rawData是否存在来判断是否确认登录     
+ *                     | ***bindgetuserinfo="userLogin"  ---   确认取消获取到用户信息触发的回调函数***
+ *                                                                              | userLogin(success){if(success.mp.detail.rawData/userInfo){}}
+ *                                                                              | 无论是确认还是取消都会返回差不多的success对象, 判断success.mp.detail.rawData/userInfo是否存在来判断是否确认登录     
  * 
  * 
  * -------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@
  *                request.js
  *                          import config from './config.js'
  *                          
- *                          export default function requese(url, data = {}, method = 'GET') {
+ *                          export default function request(url, data = {}, method = 'GET') {
  *                            return new Promise((resolve, reject) => {
  *                              wx.request({
  *                                url: config.host + url,
@@ -164,6 +164,13 @@
  *                            host: 'http://localhost:3000'
  *                          }
  *        ***======= =================***
+ * 
+ * -------------------------------------------------------------
+ * 
+ *    登录获取code码(指南、api/开放接口/登录)
+ *          wx.login()  获取 临时登录凭证code ，并回传到开发者服务器
+ * 
+ * 
  *          
  * -------------------------------------------------------------------------------------------------
  * 
@@ -207,6 +214,10 @@
   * 
   *     # 6. 项目在vscode打开
   *              |  npm start运行 (更新dist) , 微信开发者工具查看效果
+  * 
+  *     # 7. 使用stylus
+  *              | npm install stylus stylus-loader
+  *              | 注意使用vue时，样式写法没有scoped **| <style lang="stylus" rel="stylesheet/stylus"></style> |**
   * 
   * 
   *                       微信小程序的事件                    mpvue
