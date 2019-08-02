@@ -124,7 +124,7 @@
  *            类似React的路由三大属性:
  *            $router访问路由器对象【编程式更改url】、$route访问当前路由
  *              | push                                | fullpath  完整路径
- *              | replace                             | path      最后的路径
+ *              | replace                             | path      完整路径(用这个)
  *              | back()                              | ?xxx      拿参数params
  *                                                    | meta      routes里设置给$route
  * 
