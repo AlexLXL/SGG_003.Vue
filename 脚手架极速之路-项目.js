@@ -48,12 +48,14 @@
  *                  'vue$': 'vue/dist/vue.esm.js',
  *                }
  *              },
- *              devServer: {                                  // 代理和自动打开网页                  https://cli.vuejs.org/zh/config/#devserver-proxy
+ *              devServer: {                                  // 代理和自动打开网页                  https://cli.vuejs.org/zh/config/#devserver-proxy               // 如果没有打开服务器，会报错Proxy error: Could not proxy request /robots.txt?1564708753604 from localhost:8080 to http://localhost:5000/.
  *                proxy: 'http://localhost:5000',
  *                open: true // 也可以在package.json的scripts命令后加 --open自动打开网页
  *              }
  *            }
  *          }
+ *        
+ * 
  *        *** config/index.js***
  *        const prefix = process.env.NODE_ENV === "development" ? "" : "http://localhost:5000"
  * 
@@ -194,6 +196,7 @@
  * 
  * ***静态引入***:  import aaa from './xxx'             // 全部打包成一个js文件
  * ***动态引入***:  const xxx = () => import(./xxx)     // 分割打包, 按需加载  ---  在routes使用过一次
+ *     | 动态路由
  * 
  * **Vue混合**(提取公共代码)
  *      mixin.js:
@@ -240,7 +243,7 @@
  *    前置路由守卫: (拦下来看是都满足特定条件才允许进入路由url)
  *              全局守卫 // router的index.js：
  *  		            router.beforeEach((to, from, next) => {})
- *                     | to.path   --    to和$route极像
+ *                     | to.path   --    to和$route极像, 可以调fullpath、path、meta、param等  (配合数组、看有无to.path来进行next()放行)
  *                     | next()    --    放行
  *                     | next('/login')
  *         
