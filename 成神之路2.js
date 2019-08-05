@@ -113,9 +113,9 @@
  *                        | ...mapActions(['xx', 'xx'])
  * 
  *                  modules:
- *                        |...mapState({   (使用)
- *                            user:state=>state.user.xxx               // state-总数据    user-模块     xxx-分数据(user里)
- *                         }),
+ *                        | ...mapState({   (使用)
+ *                             user:state=>state.user.xxx               // state-总数据    user-模块     xxx-分数据(user里)
+ *                          }),
  * 
  *                        | ...mapMutations、...mapActions、...mapGetters // 正常使用, 总 分 都会调用
  * 

@@ -184,15 +184,19 @@
   *         
   *         el: '#app',     // 入口(选择器)
   * 
-  *         data: {},      // 数据(属性)
+  *         data: {},       // 数据(属性)  -- 脚手架里面是data(){ return {} }    ***设置改变data和props: this.xxx = yy***
   * 
-  *         methods: {},   // 事件-this.$destroy() // 删除vm
+  *         methods: {      // 事件-this.$destroy() // 删除vm
+  *             handleClick(){
+  *               this.xxx = '' 
+  *             }
+  *         },   
   * 
-  *         computed: {     // 计算属性(变化而变化、方法get/对象getset)
+  *         computed: {     // 计算属性(变化而变化、方法get/对象getset) | 不能传参
   *             fullName(){}
-  *             fullName: {
+  *             fullName2: {
   *               get(){};
-  *               set(val){}
+  *               set(val){}  ---  两种使用方式1、用在input里, 修改时触发，   2、在点击事件里面 this.fullName2 = xxx
   *                 | val --- 表单的value 
   *             } 
   *         }

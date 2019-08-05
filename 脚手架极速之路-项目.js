@@ -57,20 +57,21 @@
  *        
  * 
  *        *** config/index.js***
- *        const prefix = process.env.NODE_ENV === "development" ? "" : "http://localhost:5000"
+ *        const prefix = process.env.NODE_ENV === "development" ? "/api" : "http://localhost:5000"
  * 
  * ------------------------------------------------------------------------------------------------------------------------------------
  * 
  * swiper轮播图: 
  * 
  *  import Swiper from "swiper";  // 导入Swiper
+ *  import 'swiper/dist/css/swiper.css'
  * 
  *  var mySwiper = new Swiper(".swiper-container", {  // 实例化的方式使用(必须页面加载完成之后创建实例对象、watch不能使用时因为watch里的代码是同步的，而发请求更新数据刷新页面是异步的)
  *     loop: true, // 循环模式选项                              | 配合**vm.$nextTick(callback)使用** --- 在下次 DOM 更新循环结束之后执行延迟回调。                        
  *     pagination: {                                                    | watch+vm.$nextTick(callback)                                                
  *       el: ".swiper-pagination"                                       | this.$store.dispatch('actions',() => {vm.$nextTick(callback)} )             
  *     }                                                                | await this.$store.dispatch('actions') 后, 再写 this.$nextTick(callback)         
- *   });
+ *   });                                                        ***this就是vm，vm就是this，vue很多时候要灌输这种思想，用起来的时候注意点***
  * 
  * -------------------------------------------------------------------------------------------------------------------------------------
  * 
@@ -153,7 +154,7 @@
  *                          ele-可通过ref传节点或css选择器
  *      
  *      
- *    注意: 在计算属性里面new scroll实例对象可能到值没更新一次数据就创建一个对象, 这是应该考虑用单例模式
+ *    注意: 在计算属性里面new scroll实例对象可能导致每更新一次数据就创建一个对象, 这是应该考虑用单例模式
  * 
  *          单例模式也会带来一些问题(display:none后无法滚动): 
  *              滚动对象会保存此时html节点的css和js位置 然后加代码，但display：none之后会找不到，下次显示想滚动需要s1.refresh()刷新一下实例对象s1，
@@ -256,3 +257,21 @@
  *    后置守卫: 一般用在使用了<keep-alive></keep-alive>然后有这样一个需求:更换组件之后清除定时器
  * 
  */
+
+ /**
+  * 
+  * **基础语法**(html里简写)
+  *   html:
+  *   <input class="inputText active" :class="searchText?'':'on'" />  // class
+  *   <div style="color:red;fontSize:16px"></div>              // style
+  * 
+  *   <input v-model="stateData></input>                       // 使用状态数据-属性, ***[直接冒号--""---里面写]***
+  *   <div>{{Data}}</div>                                      // 使用状态数据-内容, ***[双大括号--{{}}--里面写]***
+  * 
+  *   <div @click="handleClick(**$event**, 'xxx')"></div>      // 使用点击事件, 回调写在method里面
+  * 
+  * 
+  *   js:
+  *   this.xxx = yy                 // 设置data或props- ***数据代理***
+  * 
+  */
