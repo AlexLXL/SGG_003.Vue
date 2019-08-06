@@ -27,13 +27,15 @@
  *      ● 配置代理(手动) ===2.x上  3.x下===
  *        ===config/index.js===                                                  
  *         proxyTable: {
- *           '/api': {  // 以api开头的路径
- *             target: 'http://localhost:5000',  // 目标服务器
- *             changeOrigin: true, // 支持跨域
- *             pathRewrite: {
- *               '^/api': '' // 删除/api
- *             }
- *           }
+ *            proxy:{
+ *              '/api': {  // 以api开头的路径
+ *                   target: 'http://localhost:5000',  // 目标服务器
+ *                   changeOrigin: true, // 支持跨域
+ *                   pathRewrite: {
+ *                   '^/api': '' // 删除/api
+ *                  }
+ *               }
+ *            }
  *         }, 
  *        ===config/index.js===
  *        const prefix = process.env.NODE_ENV === "development" ? "/api" : "http://localhost:5000"
@@ -159,6 +161,9 @@
  *          单例模式也会带来一些问题(display:none后无法滚动): 
  *              滚动对象会保存此时html节点的css和js位置 然后加代码，但display：none之后会找不到，下次显示想滚动需要s1.refresh()刷新一下实例对象s1，
  *              如果是v-if把DOM删了，会导致找不到当时保存的html节点响应的css和js位置
+ * 
+ *    CSS样式: 左滑动    父容器: width: 100%; clearFix()
+ *                      子容器：float left来使元素width由内容撑开
  * 
  * 
  * -------------------------------------------------------------------------------------------------------------------------------------
