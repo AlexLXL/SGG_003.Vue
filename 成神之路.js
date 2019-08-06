@@ -119,6 +119,10 @@
  *                | <router-view ></router-view>                  // 路由视图 (组件展示的位置)
  *                | 写路由(routes)-url变化匹配的组件
  * 
+ *      3) **路由传参**
+ *                | <router-link :to="{path:'/items', query:{categoryId:'1'}}" >  // 匹配到items这个路径会自动加上查询字符串，   变成'/items?categoryId=1
+ *                                                    params                      // this.$route.query/params拿   -- query类似get、params类似post -- params传递参数，需要使用name进行路由跳转，否则无法传递。
+ * 
  *      注意: <keep-alive></keep-alive>缓存组件、不适用实时页面
  *            
  *            类似React的路由三大属性:
